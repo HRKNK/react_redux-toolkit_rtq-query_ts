@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect } from 'react';
 import './App.css';
+import PostContainer from './components/PostContainer';
+import { useAppDispatch, useAppSelector } from './hooks/redux';
+import { fetchUsers } from './store/reducers/ActionCreators';
+// import { userSlice } from './store/reducers/UserSlice';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const dispatch = useAppDispatch();
+	// const { count } = useAppSelector(state => state.userReduser)
+	// const { increment } = userSlice.actions;
+
+	const { users, isLoading, error } = useAppSelector(state => state.userReduser)
+
+	useEffect(()=>{
+		dispatch(fetchUsers());
+	}, [])
+
+	return (
+		<div className="App">
+			<PostContainer></PostContainer>
+			{error && <h1>{error}</h1>}
+			<h1>{isLoading ? 'Идёт загрузка...' : JSON.stringify(users, null, 2)}</h1>
+			{/* <button onClick={()=> dispatch(increment(1))}>Button</button> */}
+		</div>
+	);
 }
 
 export default App;
