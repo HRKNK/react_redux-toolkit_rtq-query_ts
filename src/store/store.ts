@@ -1,21 +1,26 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { postAPI } from "../services/PostService";
-import userReduser from './reducers/UserSlice';
+import userReducer from './reducers/UserSlice';
 
+// объединение всех Reducer (исполнителей) ИЛИ обычный объект без combineReducers (просто объявление Reducer-а)
 const rootReducer = combineReducers({
-    userReduser,
+    userReducer,
+
+    // регистрация сервиса
     [postAPI.reducerPath]: postAPI.reducer,
 });
 
+// Конфигурация Redux-хранилища
 export const setupStore = () => {
     return configureStore({
-        reducer: rootReducer,
+        reducer: rootReducer, // корневой Reducer
         middleware: (getDefaultMiddleware) => {
             return getDefaultMiddleware().concat(postAPI.middleware);
         }
     })
 };
 
-export type RootState = ReturnType<typeof rootReducer>;
-export type AppStore = ReturnType<typeof setupStore>;
-export type AppDispatch = AppStore['dispatch'];
+// Типизация хранилища (основные типы)
+export type RootState = ReturnType<typeof rootReducer>; // тип состояния
+export type AppStore = ReturnType<typeof setupStore>; // тип хранилища
+export type AppDispatch = AppStore['dispatch']; // тип dispatch

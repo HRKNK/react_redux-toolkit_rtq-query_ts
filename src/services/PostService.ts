@@ -2,15 +2,15 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 import { IPost } from '../models/IPost';
 
 export const postAPI = createApi({
-    reducerPath: 'postAPI',
-    baseQuery: fetchBaseQuery({
+    reducerPath: 'postAPI', // уникальное имя
+    baseQuery: fetchBaseQuery({ // базовый url обращения
         baseUrl: 'http://localhost:5000'
     }),
     tagTypes: ['Post'],
     endpoints: (build) => ({
-        fetchAllPosts: build.query<IPost[], number>({ // GET
+        fetchAllPosts: build.query<IPost[], number>({ // GET // query - получение данных
             query: (limit: number = 5) => ({
-                url: '/posts',
+                url: '/posts', // сам эндпоинт
                 params: {
                     _limit: limit,
                 },
@@ -18,9 +18,9 @@ export const postAPI = createApi({
             providesTags: result => ['Post'], // эндпоинт работает с тегом POST
         }),
 
-        createPost: build.mutation<IPost, IPost>({ // POST
+        createPost: build.mutation<IPost, IPost>({ // POST // mutation - мутация, изменение данных
             query: (post) => ({
-                url: '/posts',
+                url: '/posts', // сам эндпоинт
                 method: 'POST',
                 body: post,
             }),
@@ -29,7 +29,7 @@ export const postAPI = createApi({
 
         updatePost: build.mutation<IPost, IPost>({ // POST
             query: (post) => ({
-                url: `/posts/${post.id}`,
+                url: `/posts/${post.id}`, // сам эндпоинт
                 method: 'PUT',
                 body: post,
             }),

@@ -3,27 +3,30 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { fetchUsers } from "./ActionCreators";
 
 interface UserState {
-    users: IUser[];
     isLoading: boolean;
     error: string;
-    // count: number;
+    
+    users: IUser[];
+    count: number;
 };
 
 const initialState: UserState = {
-    users: [],
-    isLoading: false,
+    isLoading: false, // для манипуляций над состоянием компонентов
     error: '',
-    // count: 0,
+    
+    users: [],
+    count: 0,
 };
 
-// Создает action-ы
+// Создает action-ы (сам Reducer в контексте Toolkit)
 export const userSlice = createSlice({
-    name: 'user',
-    initialState,
+    name: 'user', // уникальное имя
+    initialState, // дэфолтное состояние стейта
+
     reducers: { // функции изменяющие состояние
-        // increment(state, action: PayloadAction<number>) {
-        //     state.count += action.payload; // initialState.count
-        // },
+        increment(state, action: PayloadAction<number>) {
+            state.count += action.payload; // initialState.count (изменение поля) из стейта -> экшеном
+        },
 
         // асинхронные редюсоры (обычная реализация)
         // usersFetching(state) {
@@ -39,7 +42,7 @@ export const userSlice = createSlice({
         //     state.error = action.payload;
         // },
     },
-    extraReducers: { // асинхронные редюсоры
+    extraReducers: { // асинхронные редюсоры (зарезервировано для AsyncThunk)
         [fetchUsers.fulfilled.type]: (state, action: PayloadAction<IUser[]>) => {
             state.isLoading = false;
             state.error = '';

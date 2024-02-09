@@ -9,6 +9,7 @@ import { userSlice } from "./UserSlice";
 //     return String(error);
 // }
 
+// асинхронные редюсоры (обычная реализация)
 // export const fetchUsers = () => async (dispatch: AppDispatch) => {
 //     try {
 //         dispatch(userSlice.actions.usersFetching()); // isLoading
@@ -19,6 +20,8 @@ import { userSlice } from "./UserSlice";
 //     }
 // }
 
+
+// механизм асинхронного запроса данных
 export const fetchUsers = createAsyncThunk(
     'user/fetchAll', // название
     async(_, thunkAPI) => {
