@@ -1,27 +1,68 @@
 {
   "posts": [
     {
-      "id": 6,
-      "title": "json-server 6",
-      "author": "typicode"
+      "id": "1",
+      "title": "",
+      "views": 100
     },
     {
-      "id": 7,
-      "title": "json-server 7",
-      "author": "typicode"
+      "id": "2",
+      "title": "",
+      "views": 200
     },
     {
-      "title": "asdad",
-      "body": "asdasdasdasd",
-      "id": 8
+      "title": "asdadasd",
+      "body": "asdadasd",
+      "id": "W1o6qr3"
     },
     {
-      "title": "12312312312",
-      "body": "12312312312",
-      "id": 9
+      "title": "asdasdsd",
+      "body": "asdasdsd",
+      "id": "h_QlFgG"
+    },
+    {
+      "title": "asdadad",
+      "body": "asdadad",
+      "id": "I0CQ60T"
+    },
+    {
+      "title": "фывфыв",
+      "body": "фывфыв",
+      "id": "CnQOQ1h"
+    },
+    {
+      "title": "фывфыв",
+      "body": "фывфыв",
+      "id": "_ycWmQ7"
+    },
+    {
+      "title": "фывфыв",
+      "body": "фывфыв",
+      "id": "mApPP27"
+    },
+    {
+      "title": "фвфывфыв",
+      "body": "фвфывфыв",
+      "id": "sad00ao"
+    },
+    {
+      "title": "фывфвыфы",
+      "body": "фывфвыфы",
+      "id": "5CGnNjb"
     }
   ],
-  "comments": [],
+  "comments": [
+    {
+      "id": "1",
+      "text": "a comment about post 1",
+      "postId": "1"
+    },
+    {
+      "id": "2",
+      "text": "another comment about post 1",
+      "postId": "1"
+    }
+  ],
   "profile": {
     "name": "typicode"
   }

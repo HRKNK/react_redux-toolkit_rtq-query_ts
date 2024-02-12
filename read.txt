@@ -1,1 +1,1 @@
-npx json-server --watch db.json --port 5000
+npx json-server db.json --watch --port 5000

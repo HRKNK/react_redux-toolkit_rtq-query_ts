@@ -6,7 +6,7 @@ export const postAPI = createApi({
     baseQuery: fetchBaseQuery({ // базовый url обращения
         baseUrl: 'http://localhost:5000'
     }),
-    tagTypes: ['Post'],
+    tagTypes: ['Post'], // тэги-флаги
     endpoints: (build) => ({
         fetchAllPosts: build.query<IPost[], number>({ // GET // query - получение данных
             query: (limit: number = 5) => ({
@@ -15,7 +15,7 @@ export const postAPI = createApi({
                     _limit: limit,
                 },
             }),
-            providesTags: result => ['Post'], // эндпоинт работает с тегом POST
+            providesTags: result => ['Post'], // "true" состояние для тега Post // эндпоинт работает с тегом POST
         }),
 
         createPost: build.mutation<IPost, IPost>({ // POST // mutation - мутация, изменение данных
@@ -24,7 +24,7 @@ export const postAPI = createApi({
                 method: 'POST',
                 body: post,
             }),
-            invalidatesTags: ['Post'], // данные неактуальны для данного тэга
+            invalidatesTags: ['Post'], // обнуляет состояние тега Post (вызывает fetchAllPosts)
         }),
 
         updatePost: build.mutation<IPost, IPost>({ // POST
@@ -33,7 +33,7 @@ export const postAPI = createApi({
                 method: 'PUT',
                 body: post,
             }),
-            invalidatesTags: ['Post'], // данные неактуальны для данного тэга
+            invalidatesTags: ['Post'], // обнуляет состояние тега Post (вызывает fetchAllPosts)
         }),
 
         deletePost: build.mutation<IPost, IPost>({ // POST
@@ -41,7 +41,7 @@ export const postAPI = createApi({
                 url: `/posts/${post.id}`,
                 method: 'DELETE',
             }),
-            invalidatesTags: ['Post'], // данные неактуальны для данного тэга
+            invalidatesTags: ['Post'], // обнуляет состояние тега Post (вызывает fetchAllPosts)
         }),
     }),
 });
